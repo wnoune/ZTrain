@@ -1,4 +1,15 @@
 {
   "chromeWebSecurity": false,
-  "testFiles": "**/*.feature"
+  "fileServerFolder": "Z-TRAIN",
+  "testFiles": "features/**/*.feature",
+  "fixturesFolder": "src/ressources",
+  "integrationFolder": "src/test",
+  "pluginsFile": "src/main/plugins/index.js",
+  "screenshotsFolder": "target/screenshots",
+  "videosFolder": "target/videos",
+  "supportFile": "src/main/support/index.js",
+  "downloadsFolder": "target/downloads",
+
+  "ignoreTestFiles": [],
+  "screenshotOnRunFailure": true
 }
