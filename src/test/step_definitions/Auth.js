@@ -30,7 +30,7 @@ import AuthPage from '../Pages/AuthPage';
     });   
 
     Then('User should see and error message below the login and password fields', ()=> {
-        cy.contains('incorrect')
+        cy.contains('Email ou mot de passe incorrect')
         .should('be.visible')
     });    
 
@@ -51,11 +51,11 @@ import AuthPage from '../Pages/AuthPage';
         .should('eq', 'text')
     });    
 
-//TC_800
-//Successful registration
+//TC_799
+//Access to the registration page
 
-    When('I click on subscription link', () =>{
-        clickOnContain('inscrire')
+    When('I click on registration link', () =>{
+        AuthPage.clickOnSybsLink()
     });
 
     Then('I am directed to the registration page', () =>{
@@ -83,3 +83,57 @@ import AuthPage from '../Pages/AuthPage';
         cy.contains('réinitialisé')
          .should('be.visible')
     });     
+
+//TC_811
+//Failed registration due to email
+
+    When('I fill in {string} and {string}', (email, password) =>{
+        AuthPage.fillEmailSubsField(email);
+        AuthPage.fillPasswdSubsField(password)
+    });
+
+    And('I click on the subscription button', () =>{
+        AuthPage.clickOnSubsBtn()
+    });
+
+    Then('An error message is displayed', () =>{
+        cy.contains('email must be an email')
+         .should('be.visible')
+    });
+
+//TC_805
+//Failed registration due to email
+
+    Then('An error message should displayed', () =>{
+        cy.contains('password must be longer than or equal to 8 characters')
+        .should('be.visible')
+    });
+
+//TC_804
+//Failed registration due to required fields
+
+    Then('An error message displayed', () =>{
+        cy.contains('password should not be empty')
+        .should('be.visible')
+    });
+
+//TC_800
+//Successful registration   
+
+    Then('The homepage is displayed', () =>{
+        cy.contains('ZTrain')
+        .should('be.visible')
+    });    
+
+//TC_812
+//Age field validation
+    When('I fill in {string} and {string} and {string}', (email, password, age) =>{
+        AuthPage.fillEmailSubsField(email);
+        AuthPage.fillPasswdSubsField(password);
+        AuthPage.fillAgeField(age);
+    })
+
+    Then('An internal error server message displayed', () =>{
+        cy.contains('Internal server error')
+        .should('be.visible')
+    });

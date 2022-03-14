@@ -1,14 +1,14 @@
 class Page {
 
+
     static clickOn(element){
-        cy.get(element)
-            .click();
+        cy.get(element).click();
     }
 
     static fillField(field,value){
         cy.get(field)
             .type(value)
-    }        
+    }
 
 }
 

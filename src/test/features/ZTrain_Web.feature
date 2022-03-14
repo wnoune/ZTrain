@@ -46,12 +46,12 @@ Feature: Connexion
              Then  An error message should displayed
 
         @TEST_OF-800
-        # Scenario: Successful registration
-        #      When I click on subscription link
-        #       And I fill in email field
-        #       And I fill in password field
-        #       And I click on the inscription button
-        #      Then The homepage is displayed
+        Scenario: Successful registration
+             When I click on subscription link
+              And I fill in email field
+              And I fill in password field
+              And I click on the inscription button
+             Then The homepage is displayed
 
         @TEST_OF-799
         Scenario: Access to the registration page
@@ -79,4 +79,5 @@ Feature: Connexion
         Scenario: Failed registration due to required fields
              When I click on subscription link
               And I click on the button Inscription
-             Then An error message is displayed for email and Password
+             Then An error message displayed
+             

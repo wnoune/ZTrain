@@ -1,4 +1,4 @@
-Feature: User connected
+Feature: Registration-Authentication-ResetPassword
 
         Background:
             Given go to the login Ztrain page
@@ -31,7 +31,7 @@ Feature: User connected
 
         @TEST_OF-799
         Scenario: Access to the registration page
-             When I click on the registration link
+             When I click on registration link
              Then I am directed to the registration page
 
         @TEST_OF-810
@@ -44,3 +44,53 @@ Feature: User connected
         Examples:
                   | email             | newPasswd |
                   | 237pk69@gmail.com | P@wk*/69  |
+
+        @TEST_OF-811
+        Scenario Outline: Failed registration due to email
+             When I click on registration link
+              And I fill in '<email>' and '<password>'
+              And I click on the subscription button
+             Then An error message is displayed
+
+        Examples:
+                  | email           | password |
+                  | ndorichnel@.com | P@wk*/69 |
+
+        @TEST_OF-805
+        Scenario Outline: Failed registration due to password
+             When I click on registration link
+              And I fill in '<email>' and '<password>'
+              And I click on the subscription button
+             Then An error message should displayed
+
+        Examples:
+                  | email            | password |
+                  | 237pk0@gmail.com | Azerty   |
+
+        @TEST_OF-804
+        Scenario: Failed registration due to required fields
+             When I click on registration link
+              And I click on the subscription button
+             Then An error message displayed
+
+        @TEST_OF-800
+        Scenario Outline: Successful registration
+             When I click on registration link
+              And I fill in '<email>' and '<password>'
+              And I click on the subscription button
+             Then The homepage is displayed
+
+        Examples:
+                  | email             | password |
+                  | 237pk01@gmail.com | P@wk*/69 |
+
+        @TEST_OF-812
+        Scenario Outline: Age field validation
+             When I click on registration link
+              And I fill in '<email>' and '<password>' and '<age>'
+              And I click on the subscription button
+             Then An internal error server message displayed
+
+        Examples:
+                  | email             | password | age    |
+                  | 237pk02@gmail.com | P@wk*/69 | 20 ans |
