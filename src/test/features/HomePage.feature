@@ -20,15 +20,14 @@ Feature: User connected
         @TEST_OF-831
         Scenario: Test Add product to cart
              When I click on a product
-              And I fill in the quantity of product
-                  | quantity |
-                  | 0        |
               And I click on add to card
              Then We observe a pop pop which indicates the confirmation message
               And I click on the cross to close the product sheet
+              And I click on the shopping cart icon at the top right
+             Then The product should displayed in the card
 
-        @TEST_OF-832
-        Scenario: Decrement test of the quantity of a product
+        @TEST_OF-833
+        Scenario: Increment test of the quantity of a product
              When I click on a product
               And I fill in the quantity of product
                   | quantity |
@@ -36,6 +35,31 @@ Feature: User connected
               And I click on add to card
               And I click on the cross to close the product sheet
               And I click on the shopping cart icon at the top right
+              And I click on increment button
+             Then The quantity should increase in the card
+
+     #    @TEST_OF-832
+        Scenario: Decrement test of the quantity of a product
+             
+              And I click on the shopping cart icon at the top right
               And I click on decrement button
+             Then The quantity should decrease in the card
+
+     #    @TEST_OF-839
+        Scenario: Product deletion test
+             When I click on the shopping cart icon at the top right
+              And I click on deletion button
+             Then The shopping card should be empty
+
+     #    @TEST_OF-832
+        Scenario: Check total cart price
+             When I click on a product
+              And I fill in the quantity of product
+                  | quantity |
+                  | 1        |
+              And I click on add to card
+              And I click on the cross to close the product sheet
+              And I click on the shopping cart icon at the top right
+                         
               
         

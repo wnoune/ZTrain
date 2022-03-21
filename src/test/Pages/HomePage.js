@@ -10,7 +10,15 @@ const addCard = '#style_btn_add_cart__gTXM7';
 const closeProdSheet = '#style_btn_close__9uLzQ > svg'
 const quantityfield = '.style_input_quantity__xZDIb';
 const shoppingCardIcon = '#style_content_cart_wrapper__mqNbf'
-const decrementbtn = '.style_quantity_dec__nm5ig > svg';
+const decrementBtn = '.style_quantity_dec__nm5ig';
+const incrementBtn = '.style_quantity_in__XmF4D';
+const trashCardBtn = '#style_btn_trash_cart__ttfo9';
+const trashProdCard = '.style_trash_product_cart__7Yzni > svg';
+const closeContentCard = '#style_content_cart_header__NIJbw > div > svg';
+const inputQtyCard = '.style_quantity__qJbQ3';
+const priceFirstProd = '.style_card_body__EhpLW > :nth-child(2)';
+const card_wrapper = '#style_card_wrapper__hrc1I'
+
 
 
 class HomePage extends Page {
@@ -54,10 +62,47 @@ class HomePage extends Page {
 
     static clickOnshoppingCardicon(){
         this.clickOn(shoppingCardIcon)
+        cy.get('.style_card__JLMp6').each((element) => {
+            cy.get(inputQtyCard)
+            .invoke('val')
+            .then((value) => {
+                cy.log(value)
+            })
+            
+        })
+        
     }
 
     static clickOndecrementbtn(){
-        this.clickOn(decrementbtn)
+        cy.get(inputQtyCard)
+            .invoke('val')
+            .then((value) => {
+                const initialPrice = value
+                cy.wrap(initialPrice).as('initialPrice')
+            })
+        this.clickOn(decrementBtn)
+    }
+
+    static clickOnIncrementbtn(){
+        cy.get(inputQtyCard)
+            .invoke('val')
+            .then((value) => {
+                const initialPrice = value
+                cy.wrap(initialPrice).as('initialPrice')
+            })
+        this.clickOn(incrementBtn)
+    }
+
+    static clickOnTrashCardbtn(){
+        this.clickOn(trashCardBtn)
+    }
+
+    static clickOnTrashProdCard(){
+        this.clickOn(trashProdCard)
+    }
+
+    static clickOnCloseContentCard(){
+        this.clickOn(closeContentCard)
     }
     
 }

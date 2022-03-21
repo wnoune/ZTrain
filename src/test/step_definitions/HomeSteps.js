@@ -1,6 +1,9 @@
 import {And, Given, Then, When} from "cypress-cucumber-preprocessor/steps"
 import HomePage from '../Pages/HomePage';
 
+const inputQtyCard = '.style_quantity__qJbQ3';
+const firstProduct1 = ':nth-child(2) > .style_card_body__QuFGN > [style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"] > .style_card_body_img__mkV1D';
+
 
 //TC_840
 //Log out of account
@@ -43,13 +46,7 @@ import HomePage from '../Pages/HomePage';
     //TC_831
     //Test Add product to cart
 
-    When('I fill in the quantity of product', (data) => {
-        data.hashes().forEach((element) => {
-            HomePage.fillQuantity(element.quantity)
-        });       
-    })
-
-    And('I click on add to card', () => {
+    When('I click on add to card', () => {
         HomePage.clickOnAddCard()
     });
 
@@ -62,17 +59,76 @@ import HomePage from '../Pages/HomePage';
         HomePage.clickOnCloseProdSheet()
     });
 
-//TC_832
-//Decrement test of the quantity of a product
-
-    When('I click on the shopping cart icon at the top right', () => {
+    And('I click on the shopping cart icon at the top right', () => {
         HomePage.clickOnshoppingCardicon()
     });
+
+    Then('The product should displayed in the card', () => {
+        cy.get(firstProduct1)
+        .should('be.visible')
+    })
+
+//TC_833
+//Increment test of the quantity of a product   
+    When('I fill in the quantity of product', (data) => {
+        data.hashes().forEach((element) => {
+            HomePage.fillQuantity(element.quantity)
+        });       
+    })
+
+    And('I click on increment button', () => {
+        HomePage.clickOnIncrementbtn()
+    });
+
+    Then ('The quantity should increase in the card', () => {
+        cy.get('@initialPrice')
+        .then((initialPrice) => {
+            cy.wait(5000)
+            cy.get(inputQtyCard)
+            .invoke('val')
+            .then((value) => {
+                const currentPrice = value
+                expect(initialPrice).to.eq(currentPrice)
+            })
+        })
+    });
+
+
+//TC_832
+//Decrement test of the quantity of a product
 
     When('I click on decrement button', () => {
         HomePage.clickOndecrementbtn()
     });
 
+    Then ('The quantity should decrease in the card', () => {
+        cy.get('@initialPrice')
+        .then((initialPrice) => {
+            cy.wait(5000)
+            cy.get(inputQtyCard)
+            .invoke('val')
+            .then((value) => {
+                const currentPrice = value
+                expect(initialPrice).to.eq(currentPrice)
+            })
+        })
+    });
+
+//TC_839
+//Product deletion test  
+
+    When('I click on deletion button', () => {
+        HomePage.clickOnTrashCardbtn()
+    });    
+
+    Then('The shopping card should be empty', () => {
+        cy.contains('Votre panier est vide')
+        .should('be.visible')
+    });  
+
+
        
+
+
 
 
