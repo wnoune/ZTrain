@@ -9,12 +9,13 @@ const forgotPassword = '.style_forgotpass__PRHm_';
 const url = 'https://ztrain-web.vercel.app/';
 const errorFieldRequier= '.style_messageError__LxTAG';
 const errorMessageRequier= 'Email ou mot de passe incorrect';
-const displayPasswd = 'svg';
+const displayPasswd = '#style_container_input_password___0rEz > div > svg';
 const emailResetField = '#email_reset_pass';
 const passwdResetField = '#reset_password';
 const resetButton = '#btn_reset_password';
 const emailSubsField = '#email_register';
 const passwdSubsField = '#password_register';
+const confirmPwdField = '#style_container_input_password___0rEz'
 const subsLink = '.style_link__unbWN';
 const ageField= '[placeholder="Age"]';
 
@@ -71,6 +72,10 @@ class AuthPage extends Page {
 
     static fillPasswdSubsField(password){
         this.fillField(passwdSubsField, password)
+    }
+
+    static fillConfirmPwdField(password){
+        this.fillField(confirmPwdField, confirmpwd)
     }
 
     static fillAgeField(age){

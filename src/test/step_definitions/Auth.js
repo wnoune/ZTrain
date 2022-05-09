@@ -18,7 +18,7 @@ import AuthPage from '../Pages/AuthPage';
     });
 
     Then('I should be redirected to the home page',() =>{
-        cy.contains('Popular')
+        cy.contains('produits')
          .should('be.visible')
     });
 
@@ -30,7 +30,7 @@ import AuthPage from '../Pages/AuthPage';
     });   
 
     Then('User should see and error message below the login and password fields', ()=> {
-        cy.contains('Email ou mot de passe incorrect')
+        cy.contains('email est invalid')
         .should('be.visible')
     });    
 
@@ -87,9 +87,10 @@ import AuthPage from '../Pages/AuthPage';
 //TC_811
 //Failed registration due to email
 
-    When('I fill in {string} and {string}', (email, password) =>{
+    When('I fill in {string} and {string} ans {string}', (email, password, confirmpwd) =>{
         AuthPage.fillEmailSubsField(email);
         AuthPage.fillPasswdSubsField(password)
+        AuthPage.fillConfirmPwdField(confirmpwd)
     });
 
     And('I click on the subscription button', () =>{

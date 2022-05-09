@@ -11,7 +11,7 @@ Feature: Registration-Authentication-ResetPassword
 
         Examples:
                   | email             | password |
-                  | 237pk69@gmail.com | P@wk*/69 |
+                  | 237pk69@gmail.com | P@wk/*69 |
 
 
         @TEST_OF-807
@@ -27,7 +27,7 @@ Feature: Registration-Authentication-ResetPassword
 
         Examples:
                   | password |
-                  | P@wk*/69 |
+                  | P@wk/*69 |
 
         @TEST_OF-799
         Scenario: Access to the registration page
@@ -43,29 +43,29 @@ Feature: Registration-Authentication-ResetPassword
 
         Examples:
                   | email             | newPasswd |
-                  | 237pk69@gmail.com | P@wk*/69  |
+                  | 237pk69@gmail.com | P@wk/*69  |
 
         @TEST_OF-811
         Scenario Outline: Failed registration due to email
              When I click on registration link
-              And I fill in '<email>' and '<password>'
+              And I fill in '<email>' and '<password>' and '<confirmpwd>'
               And I click on the subscription button
              Then An error message is displayed
 
         Examples:
-                  | email           | password |
-                  | ndorichnel@.com | P@wk*/69 |
+                  | email           | password |confirmpwd|
+                  | ndorichnel@.com | P@wk/*69 |P@wk/*69  |
 
         @TEST_OF-805
         Scenario Outline: Failed registration due to password
              When I click on registration link
-              And I fill in '<email>' and '<password>'
+              And I fill in '<email>' and '<password>' and '<confirmpwd>'
               And I click on the subscription button
              Then An error message should displayed
 
         Examples:
-                  | email            | password |
-                  | 237pk0@gmail.com | Azerty   |
+                  | email            | password |confirmpwd|
+                  | 237pk0@gmail.com | Azerty   |Azerty    |
 
         @TEST_OF-804
         Scenario: Failed registration due to required fields
@@ -82,7 +82,7 @@ Feature: Registration-Authentication-ResetPassword
 
         Examples:
                   | email             | password |
-                  | 237pk01@gmail.com | P@wk*/69 |
+                  | 237pk01@gmail.com | P@wk/*69 |
 
         @TEST_OF-812
         Scenario Outline: Age field validation
@@ -93,4 +93,4 @@ Feature: Registration-Authentication-ResetPassword
 
         Examples:
                   | email             | password | age    |
-                  | 237pk02@gmail.com | P@wk*/69 | 20 ans |
+                  | 237pk02@gmail.com | P@wk/*69 | 20 ans |
