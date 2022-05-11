@@ -82,6 +82,6 @@ Feature: Registration-Authentication-ResetPassword
 
         Examples:
                   |email             |password |confirmpwd|
-                  |237pk04@gmail.com |P@wk/*69 |P@wk/*69  |
+                  |237pk06@gmail.com |P@wk/*69 |P@wk/*69  |
 
 
