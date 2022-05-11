@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-localstorage-commands": "^1.7.0",
     "multiple-cucumber-html-reporter": "^1.19.0"
   }
 }

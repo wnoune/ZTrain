@@ -15,9 +15,9 @@ const passwdResetField = '#reset_password';
 const resetButton = '#btn_reset_password';
 const emailSubsField = '#email_register';
 const passwdSubsField = '#password_register';
-const confirmPwdField = '#style_container_input_password___0rEz'
+const confirmPwdField = '#confirm_password_register';
 const subsLink = '.style_link__unbWN';
-const ageField= '[placeholder="Age"]';
+
 
 
 class AuthPage extends Page {
@@ -74,14 +74,9 @@ class AuthPage extends Page {
         this.fillField(passwdSubsField, password)
     }
 
-    static fillConfirmPwdField(password){
+    static fillConfirmPwdField(confirmpwd){
         this.fillField(confirmPwdField, confirmpwd)
     }
-
-    static fillAgeField(age){
-        this.fillField(ageField, age)
-    }
-
 
 }
 

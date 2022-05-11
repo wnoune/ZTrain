@@ -87,9 +87,9 @@ import AuthPage from '../Pages/AuthPage';
 //TC_811
 //Failed registration due to email
 
-    When('I fill in {string} and {string} ans {string}', (email, password, confirmpwd) =>{
+    When('I fill in {string} and {string} and {string}', (email, password, confirmpwd) =>{
         AuthPage.fillEmailSubsField(email);
-        AuthPage.fillPasswdSubsField(password)
+        AuthPage.fillPasswdSubsField(password);
         AuthPage.fillConfirmPwdField(confirmpwd)
     });
 
@@ -98,7 +98,7 @@ import AuthPage from '../Pages/AuthPage';
     });
 
     Then('An error message is displayed', () =>{
-        cy.contains('email must be an email')
+        cy.contains('email est invalid')
          .should('be.visible')
     });
 
@@ -106,7 +106,7 @@ import AuthPage from '../Pages/AuthPage';
 //Failed registration due to email
 
     Then('An error message should displayed', () =>{
-        cy.contains('password must be longer than or equal to 8 characters')
+        cy.contains('Le mot de passe doit avoir au moins 8 caractères')
         .should('be.visible')
     });
 
@@ -114,7 +114,7 @@ import AuthPage from '../Pages/AuthPage';
 //Failed registration due to required fields
 
     Then('An error message displayed', () =>{
-        cy.contains('password should not be empty')
+        cy.contains('Le mot de passe doit avoir au moins 8 caractères')
         .should('be.visible')
     });
 
@@ -122,19 +122,6 @@ import AuthPage from '../Pages/AuthPage';
 //Successful registration   
 
     Then('The homepage is displayed', () =>{
-        cy.contains('ZTrain')
+        cy.contains('Z-Train')
         .should('be.visible')
     });    
-
-//TC_812
-//Age field validation
-    When('I fill in {string} and {string} and {string}', (email, password, age) =>{
-        AuthPage.fillEmailSubsField(email);
-        AuthPage.fillPasswdSubsField(password);
-        AuthPage.fillAgeField(age);
-    })
-
-    Then('An internal error server message displayed', () =>{
-        cy.contains('Internal server error')
-        .should('be.visible')
-    });

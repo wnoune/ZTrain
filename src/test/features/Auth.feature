@@ -76,21 +76,12 @@ Feature: Registration-Authentication-ResetPassword
         @TEST_OF-800
         Scenario Outline: Successful registration
              When I click on registration link
-              And I fill in '<email>' and '<password>'
+              And I fill in '<email>' and '<password>' and '<confirmpwd>'
               And I click on the subscription button
              Then The homepage is displayed
 
         Examples:
-                  | email             | password |
-                  | 237pk01@gmail.com | P@wk/*69 |
+                  |email             |password |confirmpwd|
+                  |237pk04@gmail.com |P@wk/*69 |P@wk/*69  |
 
-        @TEST_OF-812
-        Scenario Outline: Age field validation
-             When I click on registration link
-              And I fill in '<email>' and '<password>' and '<age>'
-              And I click on the subscription button
-             Then An internal error server message displayed
 
-        Examples:
-                  | email             | password | age    |
-                  | 237pk02@gmail.com | P@wk/*69 | 20 ans |

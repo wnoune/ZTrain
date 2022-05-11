@@ -7,26 +7,15 @@ const firstProduct1 = ':nth-child(2) > .style_card_body__QuFGN > [style="box-siz
 
 //TC_840
 //Log out of account
-    Given ('go to the login Ztrain page', () => {
+    Given ('I am logged in', () => {
         HomePage.visit()
     });
 
-    When('I fill in email and password fields', (data) => {
-        data.hashes().forEach((element) => {
-            HomePage.fillEmail(element.email);
-            HomePage.fillPassword(element.password);
-        });        
-    })
-
-    And ('I click on login button', () =>{
-        HomePage.clickOnLoginBtn()
-    });
-
-    And('I point the cursor to the account icon and click on disconnexion', () => {
+    When ('I point the cursor to the account icon and click on disconnexion', () => {
         HomePage.clickOnDisconnectbtn()
     });
 
-    Then('I should be logged out',() =>{
+    Then ('I should be logged out',() =>{
         cy.contains('Bienvenue!!!')
         .should('be.visible')
     });
@@ -34,11 +23,11 @@ const firstProduct1 = ':nth-child(2) > .style_card_body__QuFGN > [style="box-siz
 //TC_830
 //Display the sheet of a product
 
-    When('I click on a product', () => {
+    When ('I click on a product', () => {
         HomePage.clickOnProduct()
     });
 
-    Then('The product sheet should appear', () => {
+    Then ('The product sheet should appear', () => {
         cy.contains('Description')
         .should('be.visible')
     });
@@ -46,37 +35,33 @@ const firstProduct1 = ':nth-child(2) > .style_card_body__QuFGN > [style="box-siz
     //TC_831
     //Test Add product to cart
 
-    When('I click on add to card', () => {
+    When ('I click on add to card', () => {
         HomePage.clickOnAddCard()
     });
 
-    Then('We observe a pop pop which indicates the confirmation message', () => {
-        cy.contains('Votre panier a ete mis à jour')
+    Then ('We observe a pop pop which indicates the confirmation message', () => {
+        cy.contains('Votre panier à été mis à jour')
         .should('be.visible')
-    });    
-
-    And('I click on the cross to close the product sheet', () => {
-        HomePage.clickOnCloseProdSheet()
     });
 
-    And('I click on the shopping cart icon at the top right', () => {
+    And ('I click on the shopping card icon at the top right', () => {
         HomePage.clickOnshoppingCardicon()
     });
 
-    Then('The product should displayed in the card', () => {
+    Then ('The product should displayed in the card', () => {
         cy.get(firstProduct1)
         .should('be.visible')
     })
 
 //TC_833
 //Increment test of the quantity of a product   
-    When('I fill in the quantity of product', (data) => {
+    When ('I fill in the quantity of product', (data) => {
         data.hashes().forEach((element) => {
             HomePage.fillQuantity(element.quantity)
         });       
     })
 
-    And('I click on increment button', () => {
+    And ('I click on increment button', () => {
         HomePage.clickOnIncrementbtn()
     });
 
@@ -93,11 +78,10 @@ const firstProduct1 = ':nth-child(2) > .style_card_body__QuFGN > [style="box-siz
         })
     });
 
-
 //TC_832
 //Decrement test of the quantity of a product
 
-    When('I click on decrement button', () => {
+    When ('I click on decrement button', () => {
         HomePage.clickOndecrementbtn()
     });
 
@@ -114,14 +98,18 @@ const firstProduct1 = ':nth-child(2) > .style_card_body__QuFGN > [style="box-siz
         })
     });
 
-//TC_839
-//Product deletion test  
+//TC_902
+//Emptying card test
 
-    When('I click on deletion button', () => {
+    When ('I click on trash card button', () => {
         HomePage.clickOnTrashCardbtn()
-    });    
+    });
 
-    Then('The shopping card should be empty', () => {
+    And ('I click on the shopping card icon', () => {
+        HomePage.clickOnshoppingCardicon()
+    });
+
+    Then ('The shopping card should be empty', () => {
         cy.contains('Votre panier est vide')
         .should('be.visible')
     });  
