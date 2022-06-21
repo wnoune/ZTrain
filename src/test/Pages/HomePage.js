@@ -25,7 +25,7 @@ class HomePage extends Page {
         const username = '237pk69@gmail.com'
         const password = 'P@wk/*69'
 
-        cy.request('POST', 'https://ztrain-shop.herokuapp.com/auth/login', {
+        cy.request('POST', 'https://api-ztrain-dev.herokuapp.com/auth/login', {
            email: username,
            password: password
         }).then((response) => {
