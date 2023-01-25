@@ -9,7 +9,7 @@
   "videosFolder": "target/videos",
   "supportFile": "src/main/support/index.js",
   "downloadsFolder": "target/downloads",
-  "baseUrl": "https://dev-ztrain-web.vercel.app",
+  "baseUrl": "https://ztrain-web.vercel.app/",
   "ignoreTestFiles": [],
   "screenshotOnRunFailure": true
 }
